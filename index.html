@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href='https://fonts.googleapis.com/css?family=Bonbon' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=DM Mono' rel='stylesheet'>
     <title>  </title>
     <style>
       body {
@@ -13,65 +13,13 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-      }
-      canvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: -1;
+        font-family: 'DM Mono';
+        font-size: 22px;
       }
     </style>
   </head>
   <body>
-    <canvas id="canvas"></canvas>
-    <script src="controls.js"></script>
-    <script src="ball.js"></script>
-    <script src="rect.js"></script>
-    <script type = "module">
-
-    import Stats from 'https://cdn.jsdelivr.net/npm/three@0.161/examples/jsm/libs/stats.module.js';
-
-    var stats = new Stats();
-    document.body.appendChild( stats.dom );
-
-    import RAPIER from 'https://cdn.skypack.dev/@dimforge/rapier2d-compat@0.11.2';
-
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext("2d");
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const scale = 60;
-
-    await RAPIER.init();
-    const gravity = { x: 0.0, y: 9.81 *scale };
-    const world = new RAPIER.World(gravity);
-
-    // Create a static line segment
-    let rects = [];
-    rects.push(new Rectangle(world, RAPIER, canvas.width/2,canvas.height-20 , canvas.width/2, 20))
-    rects.push(new Rectangle(world, RAPIER, 20,canvas.height/2 , 20, canvas.height/2))
-    rects.push(new Rectangle(world, RAPIER, canvas.width-20,canvas.height/2 , 20, canvas.height/2))
-
-    //create ball
-    let balls = [];
-    balls.push(new Ball(world, RAPIER, 100, 100 , 50, 'KEYS'))
-
-    function animate() {
-        stats.begin();
-        world.step();
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        for(let i=0;i<rects.length;i++){
-            rects[i].draw(ctx)
-        }
-        balls.forEach(b => b.update(RAPIER));
-        balls.forEach(b => b.draw(ctx));
-        stats.end();
-        requestAnimationFrame(animate);
-    }
-
-    animate();
-
-    </script>
+    <a href="/ball/index.html">Balls</a>
+    <script src="main.js"></script>
   </body>
 </html>
