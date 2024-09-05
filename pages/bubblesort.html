@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="https://storage.needpix.com/rsynced_images/solid-red-background-14148727243CA.jpg">
+    <title>Quick Sort</title>
+</head>
+<body style="margin: 0;">
+    <canvas id="canvas"></canvas>
+    <script type="module">
+        import { GUI } from 'https://unpkg.com/three@v0.152.2/examples/jsm/libs/lil-gui.module.min.js';
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext("2d");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        var inputs = { N: 7, step: function(){ shift() }, reset: function(){ reset() } };
+        let numbers, last, sorted, toSort, finished;
+
+        function shuffle(array) {
+            let currentIndex = array.length;
+
+            while (currentIndex != 0) {
+                let randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+
+                [array[currentIndex], array[randomIndex]] = [
+                array[randomIndex], array[currentIndex]];
+            }
+        }
+        function reset() {
+            numbers = Array(inputs.N);
+            for(let i=0;i<numbers.length;i++){
+                numbers[i]=i+1;
+            }
+            shuffle(numbers);
+            sorted = 0;
+            toSort = 0;
+            draw();
+            last = 'n';
+            finished = false;
+        }
+
+        function draw() {
+            ctx.fillStyle = "lightgrey";
+            ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
+            let width = window.innerWidth/inputs.N;
+            let height = (window.innerHeight*0.9)/inputs.N;
+            for(let i=0;i<numbers.length;i++){
+                if(numbers.length-i <= sorted){
+                    ctx.fillStyle = "darkgreen";
+                }else{
+                    ctx.fillStyle = "black";
+                }
+                ctx.fillRect(i*width, window.innerHeight, width, -height*numbers[i]);
+            }
+        }
+
+        function showPair() {
+            let width = window.innerWidth/inputs.N;
+            let height = (window.innerHeight*0.9)/inputs.N;
+            ctx.fillStyle = "orange";
+            for(let i=0;i<numbers.length;i++){
+                if(i == toSort || i == toSort + 1){
+                    ctx.fillRect(i*width, window.innerHeight, width, -height*numbers[i]);
+                }
+            }
+        }
+
+        function next() {
+            let holder = numbers[toSort];
+            if(holder > numbers[toSort + 1]){
+                numbers[toSort] = numbers[toSort + 1];
+                numbers[toSort + 1] = holder;
+            }
+            toSort++;
+            if(toSort + sorted + 1 == numbers.length){
+                sorted++;
+                toSort = 0;
+            }
+            draw();
+            if(sorted + 1 == numbers.length){
+                sorted++;
+                draw();
+                alert('Finished!');
+                finished = true;
+            }
+        }
+
+        function shift() {
+            if(!finished){
+                if (last == 'n'){
+                    showPair();
+                    last = 's';
+                }else{
+                    next();
+                    last = 'n';
+                }
+            }
+        }
+        
+        //gui
+        const gui = new GUI();
+        gui.add( inputs, 'N', 2, 30 ).step(1).onChange(function(){reset()});
+        gui.add( inputs, 'step' );
+        gui.add( inputs, 'reset' );
+
+        reset();
+
+        onresize = (event) =>  {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            draw();
+        };
+
+    </script>
+</body>
+</html>
