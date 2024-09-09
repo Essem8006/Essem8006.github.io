@@ -166,34 +166,6 @@
                 stats.update()
             }
             animate()
-            window.addEventListener("keydown", (event) => {
-                if(event.keyCode == 87){
-                    forward = true;
-                }else if(event.keyCode == 69){
-                    jump = true;
-                }else if(event.keyCode == 65){
-                    left = true;
-                }else if(event.keyCode == 83){
-                    back = true;
-                }else if(event.keyCode == 68){
-                    right = true;
-                }else{
-                    console.log(event.keyCode);
-                }
-            });
-            window.addEventListener("keyup", (event) => {
-                if(event.keyCode == 87){
-                    forward = false;
-                }else if(event.keyCode == 65){
-                    left = false;
-                }else if(event.keyCode == 83){
-                    back = false;
-                }else if(event.keyCode == 68){
-                    right = false;
-                }else if(event.keyCode == 69){
-                    jump = false;
-                }
-            });
         </script>
     </body>
 </html>
