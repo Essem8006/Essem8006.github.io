@@ -111,7 +111,9 @@
                 scene.add(object)
                 fourMesh = object
                 console.log(fourMesh)
-                fourMesh.material = new THREE.MeshPhongMaterial({color: 0xBDFC96})
+                fourMesh.children[0].material = new THREE.MeshPhongMaterial({color: 0xBDFC96})
+                fourMesh.children[1].material = new THREE.MeshPhongMaterial({color: 0xBDFC96})
+                fourMesh.children[2].material = new THREE.MeshPhongMaterial({color: 0xBDFC96})
                 fourMesh.castShadow = true
 
                 let hold = [...fourMesh.children[0].geometry.attributes.position.array, ...fourMesh.children[1].geometry.attributes.position.array]
