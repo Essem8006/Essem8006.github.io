@@ -77,6 +77,68 @@
         })
         scene.add(camera)
         camera.position.set(10, 10, 10)
+
+        //Main
+        function FixedCube(x,y,z, h, w, d, visible = true) {
+            if(visible){
+                const cubeMesh = new THREE.Mesh(new THREE.BoxGeometry(h, w, d), new THREE.MeshPhongMaterial())
+                cubeMesh.castShadow = true
+                cubeMesh.receiveShadow = true
+                scene.add(cubeMesh)
+                cubeMesh.position.set(x,y,z)
+            }
+            const cubeBody = world.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslation(x, y, z))
+            const cubeShape = RAPIER.ColliderDesc.cuboid(h/2, w/2, d/2).setRestitution(0.5).setFriction(0.8)
+            world.createCollider(cubeShape, cubeBody)
+        }
+        function Ball(x,y,z, r, quality = 16) {
+            const ballMesh = new THREE.Mesh(new THREE.SphereGeometry( r, 2*quality, quality ), new THREE.MeshPhongMaterial({color: 0xf03040}))
+            ballMesh.castShadow = true
+            ballMesh.receiveShadow = true
+            scene.add(ballMesh)
+            ballMesh.position.set(x,y,z)
+            const ballBody = world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(x, y, z).setCanSleep(false))
+            const ballShape = RAPIER.ColliderDesc.ball(r).setRestitution(0.5).setFriction(0.8)
+            world.createCollider(ballShape, ballBody)
+            return [ballMesh,ballBody];
+        }
+
+        //make it
+        let bowlingBall = Ball(0,10,0,1)
+        FixedCube(0,0,0,10,1,10)
+
+        //Lights
+        const light1 = new THREE.SpotLight(0xffffff, 100, 30)
+        light1.position.set(7, 7, 7)
+        light1.angle = Math.PI / 3.8
+        light1.castShadow = true
+        scene.add(light1)
+        const ambientlight = new THREE.AmbientLight( 0x808080 ); // soft white light  -  fourMesh is this one of the only comments??
+        scene.add( ambientlight );
+
+        const stats = new Stats()
+        document.body.appendChild(stats.dom)
+
+        const gui = new GUI()
+        gui.add(rapierDebugRenderer, 'enabled').name('Rapier Degug Renderer')
+
+        const controls = new OrbitControls( camera, renderer.domElement );
+
+        let delta;
+        const clock = new THREE.Clock()
+        function animate() {
+            bowlingBall[0].position.copy(bowlingBall[1].translation())
+            bowlingBall[0].quaternion.copy(bowlingBall[1].rotation())
+            requestAnimationFrame(animate)
+            delta = clock.getDelta()
+            world.timestep = Math.min(delta, 0.1)
+            world.step()
+            controls.update();
+            rapierDebugRenderer.update()
+            renderer.render(scene, camera)
+            stats.update()
+        }
+        animate()
     </script>
     <script src="help.js"></script>
     </body>
