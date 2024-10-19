@@ -114,7 +114,7 @@
 
         await new GLTFLoader().loadAsync('bowling_pin.glb').then((gltf) => {
             console.log(gltf)
-            bowl_mesh = gltf.scene.getObjectByName('root')//cylinder_2,"GLTF_SceneRootNode"
+            let bowl_mesh = gltf.scene.getObjectByName('root')//cylinder_2,"GLTF_SceneRootNode"
             bowl_mesh.position.set(0, 0, 0)
             bowl_mesh.traverse((o) => {
                 o.castShadow = true
