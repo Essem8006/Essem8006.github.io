@@ -115,13 +115,13 @@
         await new GLTFLoader().loadAsync('bowling_pin.glb').then((gltf) => {
             console.log(gltf)
             let bowl_mesh = gltf.scene.getObjectByName('root')//cylinder_2,"GLTF_SceneRootNode"
-            bowl_mesh.position.set(0, 0, 0)
+            bowl_mesh.position.set(72, 0.75, 0)
             bowl_mesh.traverse((o) => {
                 o.castShadow = true
-            })
-            
-
-            scene.add(bowl_mesh)
+            });
+            bowl_mesh.rotation.x = Math.PI/2;
+            bowl_mesh.scale.set(1.5/4.15,1.5/4.15,1.5/4.15);
+            scene.add(bowl_mesh);
         })
 
         //Lights
