@@ -114,22 +114,14 @@
 
         await new GLTFLoader().loadAsync('bowling_pin.glb').then((gltf) => {
             console.log(gltf)
-            bowl_mesh = gltf.scene.getObjectByName('root')//cylinder_2
-            this.carMesh.position.set(0, 0, 0)
-            this.carMesh.traverse((o) => {
+            bowl_mesh = gltf.scene.getObjectByName('root')//cylinder_2,"GLTF_SceneRootNode"
+            bowl_mesh.position.set(0, 0, 0)
+            bowl_mesh.traverse((o) => {
                 o.castShadow = true
             })
             
-            this.wheelBLMesh = gltf.scene.getObjectByName('wheel_backLeft')
-            this.wheelBRMesh = gltf.scene.getObjectByName('wheel_backRight')
-            this.wheelFLMesh = gltf.scene.getObjectByName('wheel_frontLeft')
-            this.wheelFRMesh = gltf.scene.getObjectByName('wheel_frontRight')
-            this.wheelBLMesh.position.set(0, 0, 0)
-            this.wheelBRMesh.position.set(0, 0, 0)
-            this.wheelFLMesh.position.set(0, 0, 0)
-            this.wheelFRMesh.position.set(0, 0, 0)
 
-            scene.add(this.carMesh, this.wheelBLMesh, this.wheelBRMesh, this.wheelFLMesh, this.wheelFRMesh)
+            scene.add(bowl_mesh)
         })
 
         //Lights
