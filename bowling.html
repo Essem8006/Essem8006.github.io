@@ -76,7 +76,7 @@
             renderer.setSize(window.innerWidth, window.innerHeight)
         })
         scene.add(camera)
-        camera.position.set(10, 10, 10)
+        camera.position.set(-10, 10, 0)
 
         //Main
         function FixedCube(x,y,z, h, w, d, visible = true) {
@@ -105,7 +105,7 @@
 
         //make it
         let bowlingBall = Ball(0,10,0,1)
-        FixedCube(0,0,0,10,1,10)
+        FixedCube(10,-1,0,20,2,10)
 
         //Lights
         const light1 = new THREE.SpotLight(0xffffff, 100, 30)
