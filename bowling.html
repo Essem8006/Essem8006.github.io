@@ -130,6 +130,7 @@
             physicsFolder.add(world.gravity, 'z', -10.0, 10.0, 0.1)
 
         const controls = new OrbitControls( camera, renderer.domElement );
+        controls.target.set( 36, 0, 0 );
 
         let delta;
         const clock = new THREE.Clock()
