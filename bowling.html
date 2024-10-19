@@ -103,9 +103,12 @@
             return [ballMesh,ballBody];
         }
 
-        //make it
-        let bowlingBall = Ball(0,10,0,1)
-        FixedCube(10,-1,0,20,2,10)
+        //all measurements in deca-inches
+        let bowlingBall = Ball(0,10,0,0.8595/2)
+        FixedCube(10,-1,0,20,2,4.15)
+        FixedCube(10,-1.5,0,20,2,6)
+        FixedCube(10,0,-4,20,0.5,2)
+        FixedCube(10,0,4,20,0.5,2)
 
         //Lights
         const light1 = new THREE.SpotLight(0xffffff, 100, 30)
