@@ -1,0 +1,1 @@
+let spin, power, angleOfThrow;
