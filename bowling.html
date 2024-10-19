@@ -112,7 +112,7 @@
         FixedCube(36,0,-4,72,0.5,2)
         FixedCube(36,0,4,72,0.5,2)
 
-        await new GLTFLoader().loadAsync('https://sbedit.net/models/sedanSports.glb').then((gltf) => {
+        await new GLTFLoader().loadAsync('bowling_pin.glb').then((gltf) => {
             console.log(gltf)
             this.carMesh = gltf.scene.getObjectByName('body')
             this.carMesh.position.set(0, 0, 0)
