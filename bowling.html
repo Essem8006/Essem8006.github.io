@@ -122,8 +122,12 @@
             bowl_mesh.rotation.x = -Math.PI/2;
             bowl_mesh.scale.set(1.5/4.15,1.5/4.15,1.5/4.15);
 
-            let pin1 = bowl_mesh.clone();
-            scene.add(pin1);
+            let pins = [];
+            for(let i=0;i<10;i++){
+                pins.push(bowl_mesh.clone());
+                pins[i].position.x+=i/3;
+                scene.add(pins[i]);
+            }
         })
 
         //Lights
