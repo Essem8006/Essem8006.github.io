@@ -24,12 +24,21 @@
             left: 10vw;
             position: fixed;
             display: grid;
-            grid-template-columns: 32.5vw 32.5vw;/*Bad maths but I have flu and don't care*/
+            grid-template-columns: 32.5vw 32.5vw;
             gap: 5vh 5vw;
             padding: 5vh 5vw;
         }
         .button {
             background-color: aquamarine;
+        }
+        canvas {
+            z-index: -1;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100vw;
+            background-color: brown;
         }
     </style>
     </head>
@@ -42,11 +51,11 @@
             }
         }
     </script>
-    <!--<canvas id="name"></canvas>
+    <canvas id="name"></canvas>
     <script type="module">
         import * as THREE from 'three';
         
-    </script>-->
+    </script>
     <div id="holder">
         <div class="button">
             <a href="/balls/index.html">Balls</a>
