@@ -121,7 +121,9 @@
             });
             bowl_mesh.rotation.x = -Math.PI/2;
             bowl_mesh.scale.set(1.5/4.15,1.5/4.15,1.5/4.15);
-            scene.add(bowl_mesh);
+
+            let pin1 = bowl_mesh.clone();
+            scene.add(pin1);
         })
 
         //Lights
