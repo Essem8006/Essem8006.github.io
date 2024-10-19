@@ -124,6 +124,10 @@
 
         const gui = new GUI()
         gui.add(rapierDebugRenderer, 'enabled').name('Rapier Degug Renderer')
+        const physicsFolder = gui.addFolder('Physics')
+            physicsFolder.add(world.gravity, 'x', -10.0, 10.0, 0.1)
+            physicsFolder.add(world.gravity, 'y', -10.0, 10.0, 0.1)
+            physicsFolder.add(world.gravity, 'z', -10.0, 10.0, 0.1)
 
         const controls = new OrbitControls( camera, renderer.domElement );
 
