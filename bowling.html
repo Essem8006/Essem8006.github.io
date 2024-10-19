@@ -114,7 +114,7 @@
 
         await new GLTFLoader().loadAsync('bowling_pin.glb').then((gltf) => {
             console.log(gltf)
-            bowl_mesh = gltf.scene.getObjectByName('body')
+            bowl_mesh = gltf.scene.getObjectByName('root')//cylinder_2
             this.carMesh.position.set(0, 0, 0)
             this.carMesh.traverse((o) => {
                 o.castShadow = true
