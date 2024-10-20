@@ -62,7 +62,7 @@
         }
 
         await RAPIER.init() // This line is only needed if using the compat version
-        const gravity = new RAPIER.Vector3(0.0, -9.81, 0.0)
+        const gravity = new RAPIER.Vector3(0.0, 0, 0.0)
         const world = new RAPIER.World(gravity)
         const scene = new THREE.Scene()
         const rapierDebugRenderer = new RapierDebugRenderer(scene, world)
