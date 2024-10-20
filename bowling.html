@@ -120,6 +120,7 @@
             bowl_mesh.traverse((o) => {
                 o.castShadow = true
             });
+            bowl_mesh.rotation.x = -Math.PI/2
             bowl_mesh.scale.set(1.5/4.15,1.5/4.15,1.5/4.15);
             console.log(bowl_mesh)
 
@@ -148,7 +149,6 @@
                 const pinBody = world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(i+1, 1, 0).setCanSleep(false))
                 const quaternion1 = new THREE.Quaternion();
                 quaternion1.setFromAxisAngle( new THREE.Vector3( 1, 0, 0 ), Math.PI / 2 );
-                pinBody.quaternion = quaternion1;
                 world.createCollider(pinShape, pinBody)
                 pins.push([bowl_mesh.clone(),pinBody]);
                 scene.add(pins[i][0]);
