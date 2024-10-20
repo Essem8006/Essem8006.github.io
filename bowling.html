@@ -146,7 +146,7 @@
             //const pinShape = RAPIER.ColliderDesc.convexHull(points).setMass(1).setRestitution(0.5)
             for(let i=0;i<10;i++){
                 const pinBody = world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(i+1, 1, 0).setCanSleep(false))
-                pinBody.rotation.x = Math.PI/2;
+                pinBody.quaternion.set(1,1,0,0);
                 world.createCollider(pinShape, pinBody)
                 pins.push([bowl_mesh.clone(),pinBody]);
                 scene.add(pins[i][0]);
