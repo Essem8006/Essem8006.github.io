@@ -112,6 +112,7 @@
         FixedCube(36,0,-4,72,0.5,2)
         FixedCube(36,0,4,72,0.5,2)
 
+        let pins = [];
         await new GLTFLoader().loadAsync('bowling_pin.glb').then((gltf) => {
             let bowl_mesh = gltf.scene.getObjectByName('root')//cylinder_2,"GLTF_SceneRootNode"
             bowl_mesh.position.set(72, 0.75, 0)
@@ -121,7 +122,6 @@
             bowl_mesh.rotation.x = -Math.PI/2;
             bowl_mesh.scale.set(1.5/4.15,1.5/4.15,1.5/4.15);
             const pinShape = RAPIER.ColliderDesc.cylinder(0.75,1/6).setRestitution(0.5).setFriction(0.8);
-            let pins = [];
             for(let i=0;i<10;i++){
                 const pinBody = world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(72+i/2, 0.75, 0).setCanSleep(false))
                 world.createCollider(pinShape, pinBody)
