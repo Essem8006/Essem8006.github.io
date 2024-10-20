@@ -124,9 +124,30 @@
             bowl_mesh.rotation.x = -Math.PI/2;
             bowl_mesh.scale.set(1.5/4.15,1.5/4.15,1.5/4.15);
             console.log(bowl_mesh)
+
+            const v = new THREE.Vector3()
+                        let positions = []
+                        bowl_mesh.updateMatrixWorld(true) // ensure world matrix is up to date
+                        bowl_mesh.traverse((o) => {
+                            if (o.type === 'Mesh') {
+                                const positionAttribute = o.geometry.getAttribute('position')
+                                for (let i = 0, l = positionAttribute.count; i < l; i++) {
+                                    v.fromBufferAttribute(positionAttribute, i)
+                                    v.applyMatrix4(o.parent.matrixWorld)
+                                    positions.push(...v)
+                                }
+                            }
+                        })
+
+                        // create shapes for carBody, wheelBodies and axelBodies
+                        const pinShape = RAPIER.ColliderDesc.convexMesh(new Float32Array(positions))
+                            .setMass(1)
+                            .setRestitution(0.5)
+                            .setFriction(3)
+
             let hold = [...bowl_mesh.children[0].geometry.attributes.position.array]
             const points = new Float32Array(hold);
-            const pinShape = RAPIER.ColliderDesc.convexHull(points).setMass(1).setRestitution(0.5)
+            //const pinShape = RAPIER.ColliderDesc.convexHull(points).setMass(1).setRestitution(0.5)
             for(let i=0;i<10;i++){
                 const pinBody = world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(72+i/2, 0.75, 0).setCanSleep(false))
                 pinBody.rotation.x -= Math.PI/2;
