@@ -186,6 +186,7 @@
             for(let i=0;i<10;i++){
                 pins[i][0].position.copy(pins[i][1].translation())
                 pins[i][0].quaternion.copy(pins[i][1].rotation())
+                pins[i][0].rotation.x-=Math.PI/2
             }
             requestAnimationFrame(animate)
             delta = clock.getDelta()
