@@ -154,6 +154,7 @@
 
         let delta;
         const clock = new THREE.Clock()
+        console.log(pins)
         function animate() {
             bowlingBall[0].position.copy(bowlingBall[1].translation())
             bowlingBall[0].quaternion.copy(bowlingBall[1].rotation())
