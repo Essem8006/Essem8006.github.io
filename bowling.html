@@ -145,8 +145,8 @@
                             .setRestitution(0.5)
                             .setFriction(3)
 
-            let hold = [...bowl_mesh.children[0].geometry.attributes.position.array]
-            const points = new Float32Array(hold);
+            //let hold = [...bowl_mesh.children[0].geometry.attributes.position.array]
+            //const points = new Float32Array(hold);
             //const pinShape = RAPIER.ColliderDesc.convexHull(points).setMass(1).setRestitution(0.5)
             for(let i=0;i<10;i++){
                 const pinBody = world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(72+i/2, 0.75, 0).setCanSleep(false))
