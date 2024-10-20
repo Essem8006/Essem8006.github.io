@@ -117,11 +117,9 @@
         let pins = [];
         await new GLTFLoader().loadAsync('bowling_pin.glb').then((gltf) => {
             let bowl_mesh = gltf.scene.getObjectByName('root')
-            bowl_mesh.position.set(72, 0.75, 0)
             bowl_mesh.traverse((o) => {
                 o.castShadow = true
             });
-            bowl_mesh.rotation.x = -Math.PI/2;
             bowl_mesh.scale.set(1.5/4.15,1.5/4.15,1.5/4.15);
             console.log(bowl_mesh)
 
