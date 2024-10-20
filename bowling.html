@@ -123,7 +123,7 @@
             });
             bowl_mesh.rotation.x = -Math.PI/2;
             bowl_mesh.scale.set(1.5/4.15,1.5/4.15,1.5/4.15);
-            let hold = [...fourMesh.children[0].geometry.attributes.position.array, ...fourMesh.children[1].geometry.attributes.position.array]
+            let hold = [...bowl_mesh.children[0].geometry.attributes.position.array]
             const points = new Float32Array(hold);
             const pinShape = RAPIER.ColliderDesc.convexHull(points).setMass(1).setRestitution(0.5)
             for(let i=0;i<10;i++){
