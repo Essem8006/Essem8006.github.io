@@ -112,7 +112,7 @@
         FixedCube(36,0,-4,72,0.5,2)
         FixedCube(36,0,4,72,0.5,2)
 
-        FixedCube(77,-4,0,10,2,10)
+        FixedCube(77,-1,0,10,2,10)
 
         let pins = [];
         await new GLTFLoader().loadAsync('bowling_pin.glb').then((gltf) => {
@@ -123,7 +123,9 @@
             });
             bowl_mesh.rotation.x = -Math.PI/2;
             bowl_mesh.scale.set(1.5/4.15,1.5/4.15,1.5/4.15);
-            const pinShape = RAPIER.ColliderDesc.cylinder(0.75,1/6).setRestitution(0.5).setFriction(0.8);
+            let hold = [...fourMesh.children[0].geometry.attributes.position.array, ...fourMesh.children[1].geometry.attributes.position.array]
+            const points = new Float32Array(hold);
+            const pinShape = RAPIER.ColliderDesc.convexHull(points).setMass(1).setRestitution(0.5)
             for(let i=0;i<10;i++){
                 const pinBody = world.createRigidBody(RAPIER.RigidBodyDesc.dynamic().setTranslation(72+i/2, 0.75, 0).setCanSleep(false))
                 pinBody.rotation.x -= Math.PI/2;
