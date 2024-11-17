@@ -55,7 +55,7 @@
             left: 0;
             height: 100vh;
             width: 100vw;
-            background-color: brown;
+            background-color: rgb(165, 42, 42);
         }
     </style>
     </head>
@@ -90,14 +90,14 @@
             renderer.setSize(window.innerWidth, window.innerHeight)
         })
         scene.add(camera)
-        camera.position.set(-6.5, 6.5, 0)
+        camera.position.set(10, 0, 0)
 
         const loader = new FontLoader();
 
         let geometry;
 loader.load( 'https://unpkg.com/three@v0.152.2/examples/fonts/helvetiker_regular.typeface.json', function ( font ) {
 
-	geometry = new TextGeometry( 'Hello three.js!', {
+	geometry = new TextGeometry( 'SAM', {
 		font: font,
 		size: 80,
 		depth: 5,
@@ -111,13 +111,30 @@ loader.load( 'https://unpkg.com/three@v0.152.2/examples/fonts/helvetiker_regular
 } );
 
 const text = new THREE.Mesh( geometry, new THREE.MeshBasicMaterial( {color: 0x00ff00} ) ); 
+text.position.set(0,0,0)
 scene.add(text)
         
         const gui = new GUI();
+        const textFolder = gui.addFolder('posFolder')
+            textFolder.add(geometry, 'size', 0.0, 80.0, 0.1)
+            textFolder.add(geometry, 'depth', 0.0, 10.0, 0.1)
+            textFolder.add(geometry, 'curveSegments', 0.0, 20.0, 0.1)
+            textFolder.add(geometry, 'bevelThickness', 0.0, 80.0, 0.1)
+            textFolder.add(geometry, 'bevelSize', 0.0, 20.0, 0.1)
+            textFolder.add(geometry, 'bevelOffset', 0.0, 20.0, 0.1)
+            textFolder.add(geometry, 'bevelSegments', 0.0, 20.0, 0.1)
         const posFolder = gui.addFolder('posFolder')
             posFolder.add(text.position, 'x', -10.0, 10.0, 0.1)
             posFolder.add(text.position, 'y', -10.0, 10.0, 0.1)
             posFolder.add(text.position, 'z', -10.0, 10.0, 0.1)
+        const rotFolder = gui.addFolder('rotFolder')
+            rotFolder.add(text.rotation, 'x', -10.0, 10.0, 0.1)
+            rotFolder.add(text.rotation, 'y', -10.0, 10.0, 0.1)
+            rotFolder.add(text.rotation, 'z', -10.0, 10.0, 0.1)
+        const scaFolder = gui.addFolder('scaFolder')
+            scaFolder.add(text.scale, 'x', -10.0, 10.0, 0.1)
+            scaFolder.add(text.scale, 'y', -10.0, 10.0, 0.1)
+            scaFolder.add(text.scale, 'z', -10.0, 10.0, 0.1)
 
  
     </script>
