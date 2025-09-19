@@ -1,0 +1,87 @@
+#diceCanvas {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 50vw;
+    background-color: red;
+}
+#name {
+    background-color: blue;
+    position: fixed;
+    top: 50px;
+    left: 50px;
+    z-index: 10;
+}
+#name h1 {
+    font-size: 10em;
+}
+:root {
+    --primary: highlight;
+    font-family: 'Akatab';
+}
+
+
+.cfs {
+    position: fixed;
+    z-index: 99;
+    color: white;
+    top: 10px;
+    right: 10px;
+}
+
+#nameBox {
+    --l1: 250px; /*fallback*/
+    --l2: calc(var(--l1) / 5);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: black;
+    z-index: -1;
+}
+
+.vertical {
+    clip-path: polygon(50% 0, 100% 10%, 100% 90%, 50% 100%, 0 90%, 0 10%);
+    height: var(--l1);
+    width: var(--l2);
+}
+
+.horizontal {
+    clip-path: polygon(10% 0, 90% 0, 100% 50%, 90% 100%, 10% 100%, 0 50%);
+    height: var(--l2);
+    width: var(--l1);
+}
+
+.hexagon {
+    position: absolute;
+    background-color: white;
+    transition: transform 0.2s linear;
+}
+
+#infoBox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.8);
+    display: grid;
+    grid-template-columns: auto auto;
+    color: white;
+    transition: opacity 1s ease-in-out;
+    opacity: 0;
+}
+.vflex {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+#infoBox h1 {
+    font-size: 10em;
+    margin: 0 20px;
+}
